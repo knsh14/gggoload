@@ -1,7 +1,4 @@
-function! gggoload#loadplugin abort
-    " let g:plugin_config = [{'module': 'github.com/knsh14/githublink', 'version': 'latest', 'command': 'githublink'}]
-    let l:plugin_configs = get(g:, 'plugin_config', '')
-
+function! gggoload#loadplugin() abort
     for i in g:plugin_config
         let c = 'go get '.get(i, 'module', '').'@'.get(i, 'version', 'latest')
         echo c
@@ -23,5 +20,5 @@ function! gggoload#loadplugin abort
     endfor
     let s:fpath = expand('<sfile>:p:h').'/gopluins.vim'
     call writefile(output, s:fpath)
-    source s:fpath
+    execute 'source '.s:fpath
 endfunction
